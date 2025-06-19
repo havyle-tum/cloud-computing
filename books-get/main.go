@@ -81,6 +81,36 @@ func findAllBooks(coll *mongo.Collection) []map[string]interface{} {
 	return ret
 }
 
+func findAllAuthors(coll *mongo.Collection) []string {
+	cursor, err := coll.Find(context.TODO(), bson.D{{}})
+	var allBooks []BookStore
+	if err = cursor.All(context.TODO(), &allBooks); err != nil {
+		panic(err)
+	}
+
+	var authors []string
+	for _, book := range allBooks {
+		authors = append(authors, book.BookAuthor)
+	}
+
+	return authors
+}
+
+func findAllYears(coll *mongo.Collection) []string {
+	cursor, err := coll.Find(context.TODO(), bson.D{{}})
+	var allBooks []BookStore
+	if err = cursor.All(context.TODO(), &allBooks); err != nil {
+		panic(err)
+	}
+
+	var years []string
+	for _, book := range allBooks {
+		years = append(years, book.BookYear)
+	}
+
+	return years
+}
+
 func main() {
 	// Connect to the database. Such defer keywords are used once the local
 	// context returns; for this case, the local context is the main function
@@ -116,12 +146,22 @@ func main() {
 		return c.JSON(http.StatusOK, books)
 	})
 
+	e.GET("/api/authors", func(c echo.Context) error {
+		authors := findAllAuthors(coll)
+		return c.JSON(http.StatusOK, authors)
+	})
+
+	e.GET("/api/years", func(c echo.Context) error {
+		years := findAllYears(coll)
+		return c.JSON(http.StatusOK, years)
+	})
+
 	// We start the server and bind it to port 3030. For future references, this
 	// is the application's port and not the external one. For this first exercise,
 	// they could be the same if you use a Cloud Provider. If you use ngrok or similar,
 	// they might differ.
 	// In the submission website for this exercise, you will have to provide the internet-reachable
 	// endpoint: http://<host>:<external-port>
-	fmt.Println("Books GET service starting on port 3030")
+	fmt.Println("Books GET service starting on port 3031")
 	e.Logger.Fatal(e.Start(":3031"))
 }
