@@ -29,7 +29,32 @@ type Book struct {
 }
 
 func createBook(coll *mongo.Collection, book Book) error {
-	_, err := coll.InsertOne(context.TODO(), book) // insert directly using struct
+	// Check if book with same ID already exists
+	cursor, err := coll.Find(context.TODO(), bson.M{"id": book.ID})
+	if err != nil {
+		return err
+	}
+	
+	var results []Book
+	if err = cursor.All(context.TODO(), &results); err != nil {
+		return err
+	}
+	
+	if len(results) > 0 {
+		return fmt.Errorf("book with ID %s already exists", book.ID)
+	}
+
+	// Create new book
+	newBook := Book{
+		ID:          book.ID,
+		BookName:    book.BookName,
+		BookAuthor:  book.BookAuthor,
+		BookEdition: book.BookEdition,
+		BookPages:   book.BookPages,
+		BookYear:    book.BookYear,
+	}
+
+	_, err = coll.InsertOne(context.TODO(), newBook)
 	return err
 }
 
