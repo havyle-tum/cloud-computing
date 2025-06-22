@@ -19,5 +19,5 @@ CMD ["app"]
 # Default command line that runs when the container starts
 # Specify the name of the compiled Go binary
 
-EXPOSE 8083
+EXPOSE 8080
 # Listen on port 3033

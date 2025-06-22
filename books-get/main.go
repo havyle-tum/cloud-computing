@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"slices"
 	"time"
 
@@ -120,7 +121,10 @@ func main() {
 	defer cancel()
 
 	// TODO: make sure to pass the proper username, password, and port
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
+	// client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
+
+	mongoURI := os.Getenv("MONGO_URI")
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoURI))
 
 	// This is another way to specify the call of a function. You can define inline
 	// functions (or anonymous functions, similar to the behavior in Python)
@@ -162,6 +166,6 @@ func main() {
 	// they might differ.
 	// In the submission website for this exercise, you will have to provide the internet-reachable
 	// endpoint: http://<host>:<external-port>
-	fmt.Println("Books GET service starting on port 8081")
-	e.Logger.Fatal(e.Start(":8081"))
+	fmt.Println("Books GET service starting on port 8080")
+	e.Logger.Fatal(e.Start(":8080"))
 }

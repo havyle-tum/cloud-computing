@@ -56,7 +56,7 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, ctx echo.C
 
 // fetchBooksFromAPI calls the books microservice to get all books
 func fetchBooksFromAPI() ([]Book) {	
-	resp, err := http.Get("http://localhost:3031/api/books")
+	resp, err := http.Get("http://books-get:8080/api/books")
 	if err != nil {
 		return nil
 	}
@@ -81,7 +81,7 @@ func fetchBooksFromAPI() ([]Book) {
 }
 
 func fetchAuthorsFromAPI() ([]string) {	
-	resp, err := http.Get("http://localhost:3031/api/authors")
+	resp, err := http.Get("http://books-get:8080/api/authors")
 	if err != nil {
 		return []string{} // or return nil
 	}
@@ -101,7 +101,7 @@ func fetchAuthorsFromAPI() ([]string) {
 }
 
 func fetchYearsFromAPI() ([]string) {	
-	resp, err := http.Get("http://localhost:3031/api/years")
+	resp, err := http.Get("http://books-get:8080/api/years")
 	if err != nil {
 		return []string{} // or return nil
 	}
