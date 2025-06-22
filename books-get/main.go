@@ -162,6 +162,6 @@ func main() {
 	// they might differ.
 	// In the submission website for this exercise, you will have to provide the internet-reachable
 	// endpoint: http://<host>:<external-port>
-	fmt.Println("Books GET service starting on port 3031")
-	e.Logger.Fatal(e.Start(":3031"))
+	fmt.Println("Books GET service starting on port 8081")
+	e.Logger.Fatal(e.Start(":8081"))
 }

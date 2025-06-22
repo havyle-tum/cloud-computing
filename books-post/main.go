@@ -139,6 +139,6 @@ func main() {
 	// they might differ.
 	// In the submission website for this exercise, you will have to provide the internet-reachable
 	// endpoint: http://<host>:<external-port>
-	fmt.Println("Books POST service starting on port 3030")
-	e.Logger.Fatal(e.Start(":3030"))
+	fmt.Println("Books POST service starting on port 8082")
+	e.Logger.Fatal(e.Start(":8082"))
 }
