@@ -2,7 +2,6 @@ version: "3.8"
 
 services:
   web:
-    image: havyy2728/exercise-web
     build: 
       context: ./web
       dockerfile: Dockerfile
@@ -18,7 +17,6 @@ services:
       - book-store
 
   books-get:
-    image: havyy2728/exercise-books-get
     build: 
       context: ./books-get
       dockerfile: Dockerfile
@@ -34,7 +32,6 @@ services:
       - book-store
 
   books-post:
-    image: havyy2728/exercise-books-post
     build: 
       context: ./books-post
       dockerfile: Dockerfile
@@ -50,7 +47,6 @@ services:
       - book-store
 
   books-put:
-    image: havyy2728/exercise-books-put
     build: 
       context: ./books-put
       dockerfile: Dockerfile
@@ -66,7 +62,6 @@ services:
       - book-store
 
   books-delete:
-    image: havyy2728/exercise-books-delete
     build: 
       context: ./books-delete
       dockerfile: Dockerfile
@@ -93,7 +88,7 @@ services:
       - book-store
 
   nginx:
-    image: havyy2728/nginx:latest
+    image: nginx:latest
     restart: unless-stopped
     ports:
       - "3030:80"
