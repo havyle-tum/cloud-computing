@@ -3,9 +3,6 @@ version: "3.8"
 services:
   web:
     image: havyy2728/exercise-web
-    build: 
-      context: ./web
-      dockerfile: Dockerfile
     container_name: web
     depends_on:
       - books-get
@@ -19,9 +16,6 @@ services:
 
   books-get:
     image: havyy2728/exercise-books-get
-    build: 
-      context: ./books-get
-      dockerfile: Dockerfile
     container_name: books-get
     depends_on:
       - mongo
@@ -35,9 +29,6 @@ services:
 
   books-post:
     image: havyy2728/exercise-books-post
-    build: 
-      context: ./books-post
-      dockerfile: Dockerfile
     container_name: books-post
     depends_on:
       - mongo
@@ -51,9 +42,6 @@ services:
 
   books-put:
     image: havyy2728/exercise-books-put
-    build: 
-      context: ./books-put
-      dockerfile: Dockerfile
     container_name: books-put
     depends_on:
       - mongo
@@ -67,9 +55,6 @@ services:
 
   books-delete:
     image: havyy2728/exercise-books-delete
-    build: 
-      context: ./books-delete
-      dockerfile: Dockerfile
     container_name: books-delete
     depends_on:
       - mongo
