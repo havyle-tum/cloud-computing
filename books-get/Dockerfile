@@ -11,4 +11,4 @@ RUN go build -v -o /usr/local/bin/app ./...
 
 CMD ["app"]
 
-EXPOSE 8080
+EXPOSE 8081
