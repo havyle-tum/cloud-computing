@@ -123,7 +123,7 @@ func main() {
 	// TODO: make sure to pass the proper username, password, and port
 	// client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
 
-	mongoURI := os.Getenv("MONGO_URI")
+	mongoURI := os.Getenv("DATABASE_URI")
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoURI))
 
 	// This is another way to specify the call of a function. You can define inline
