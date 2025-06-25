@@ -7,7 +7,7 @@ services:
     depends_on:
       - books-get
     environment:
-      - MONGO_URI=mongodb://mongo:27017
+      - DATABASE_URI=mongodb://mongo:27017
     volumes:
       - ./web:/usr/src/app
     restart: unless-stopped
@@ -20,7 +20,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017
+      - DATABASE_URI=mongodb://mongo:27017
     volumes:
       - ./services/books-get:/usr/src/app
     restart: unless-stopped
@@ -33,7 +33,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017
+      - DATABASE_URI=mongodb://mongo:27017
     volumes:
       - ./services/books-post:/usr/src/app
     restart: unless-stopped
@@ -46,7 +46,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017
+      - DATABASE_URI=mongodb://mongo:27017
     volumes:
       - ./services/books-put:/usr/src/app
     restart: unless-stopped
@@ -59,7 +59,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017
+      - DATABASE_URI=mongodb://mongo:27017
     volumes:
       - ./services/books-delete:/usr/src/app
     restart: unless-stopped
