@@ -20,13 +20,13 @@ import (
 // Defines a "model" that we can use to communicate with the
 // frontend or the database
 type Book struct {
-	MongoID     primitive.ObjectID `bson:"_id,omitempty"`
+	MongoID     primitive.ObjectID `bson:"_id,omitempty" json:"-"`  // internal Mongo ID, hidden from JSON
 	ID          string             `bson:"id" json:"id"`            // your custom ID
-	BookName    string
-	BookAuthor  string
-	BookEdition string
-	BookPages   string
-	BookYear    string
+	BookName    string             `bson:"book_name" json:"book_name"`
+	BookAuthor  string             `bson:"book_author" json:"book_author"`
+	BookEdition string             `bson:"book_edition" json:"book_edition"`
+	BookPages   string             `bson:"book_pages" json:"book_pages"`
+	BookYear    string             `bson:"book_year" json:"book_year"`
 }
 
 func createBook(coll *mongo.Collection, book Book) error {

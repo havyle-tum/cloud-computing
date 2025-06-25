@@ -21,13 +21,13 @@ import (
 // frontend or the database
 // More on these "tags" like `bson:"_id,omitempty"`: https://go.dev/wiki/Well-known-struct-tags
 type BookStore struct {
-	MongoID     primitive.ObjectID `bson:"_id,omitempty"`
+	MongoID     primitive.ObjectID `bson:"_id,omitempty" json:"-"`  // internal Mongo ID, hidden from JSON
 	ID          string             `bson:"id" json:"id"`            // your custom ID
-	BookName    string
-	BookAuthor  string
-	BookEdition string
-	BookPages   string
-	BookYear    string
+	BookName    string             `bson:"book_name" json:"book_name"`
+	BookAuthor  string             `bson:"book_author" json:"book_author"`
+	BookEdition string             `bson:"book_edition" json:"book_edition"`
+	BookPages   string             `bson:"book_pages" json:"book_pages"`
+	BookYear    string             `bson:"book_year" json:"book_year"`
 }
 
 // Here we make sure the connection to the database is correct and initial
