@@ -21,7 +21,8 @@ import (
 // frontend or the database
 // More on these "tags" like `bson:"_id,omitempty"`: https://go.dev/wiki/Well-known-struct-tags
 type BookStore struct {
-	ID     primitive.ObjectID `bson:"_id,omitempty"`
+	MongoID     primitive.ObjectID `bson:"_id,omitempty"`
+	ID          string
 	BookName    string
 	BookAuthor  string
 	BookEdition string
@@ -70,7 +71,8 @@ func findAllBooks(coll *mongo.Collection) []map[string]interface{} {
 	var ret []map[string]interface{}
 	for _, res := range results {
 		ret = append(ret, map[string]interface{}{
-			"ID":          res.ID.Hex(),
+			"MongoID": 	   res.MongoID.Hex(),
+			"ID":          res.ID,
 			"BookName":    res.BookName,
 			"BookAuthor":  res.BookAuthor,
 			"BookEdition": res.BookEdition,
