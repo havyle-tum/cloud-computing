@@ -21,7 +21,7 @@ import (
 // frontend or the database
 type Book struct {
 	MongoID     primitive.ObjectID `bson:"_id,omitempty"`
-	ID          string `bson:"id"`
+	ID          string             `bson:"id" json:"id"`            // your custom ID
 	BookName    string
 	BookAuthor  string
 	BookEdition string

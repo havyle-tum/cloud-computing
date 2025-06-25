@@ -22,7 +22,7 @@ import (
 // More on these "tags" like `bson:"_id,omitempty"`: https://go.dev/wiki/Well-known-struct-tags
 type BookStore struct {
 	MongoID     primitive.ObjectID `bson:"_id,omitempty"`
-	ID          string `bson:"id"`
+	ID          string             `bson:"id" json:"id"`            // your custom ID
 	BookName    string
 	BookAuthor  string
 	BookEdition string
