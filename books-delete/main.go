@@ -20,7 +20,8 @@ import (
 // Defines a "model" that we can use to communicate with the
 // frontend or the database
 type Book struct {
-	ID     primitive.ObjectID `bson:"_id,omitempty"`
+	MongoID     primitive.ObjectID `bson:"_id,omitempty"`
+	ID          string `bson:"id"`
 	BookName    string
 	BookAuthor  string
 	BookEdition string
