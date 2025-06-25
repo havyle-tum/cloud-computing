@@ -20,13 +20,13 @@ import (
 // Defines a "model" that we can use to communicate with the
 // frontend or the database
 type Book struct {
-	MongoID     primitive.ObjectID `bson:"_id,omitempty"`
-	ID          string             `bson:"id" json:"id"`            // your custom ID
-	BookName    string
-	BookAuthor  string
-	BookEdition string
-	BookPages   string
-	BookYear    string
+	MongoID     primitive.ObjectID `bson:"_id,omitempty" json:"-"`  // internal Mongo ID, hidden from JSON
+	ID          string             `bson:"id" json:"ID"`            // your custom ID
+	BookName    string             `bson:"book_name" json:"BookName"`
+	BookAuthor  string             `bson:"book_author" json:"BookAuthor"`
+	BookEdition string             `bson:"book_edition" json:"BookEdition"`
+	BookPages   string             `bson:"book_pages" json:"BookPages"`
+	BookYear    string             `bson:"book_year" json:"BookYear"`
 }
 
 func updateBook(coll *mongo.Collection, book Book) error {
@@ -34,11 +34,11 @@ func updateBook(coll *mongo.Collection, book Book) error {
 
 	update := bson.M{
 		"$set": bson.M{
-			"BookName":    book.BookName,
-			"BookAuthor":  book.BookAuthor,
-			"BookEdition": book.BookEdition,
-			"BookPages":   book.BookPages,
-			"BookYear":    book.BookYear,
+			"book_name":    book.BookName,
+			"book_author":  book.BookAuthor,
+			"book_edition": book.BookEdition,
+			"book_pages":   book.BookPages,
+			"book_year":    book.BookYear,
 		},
 	}
 

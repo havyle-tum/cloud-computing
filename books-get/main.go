@@ -20,14 +20,14 @@ import (
 // Defines a "model" that we can use to communicate with the
 // frontend or the database
 // More on these "tags" like `bson:"_id,omitempty"`: https://go.dev/wiki/Well-known-struct-tags
-type BookStore struct {
+type Book struct {
 	MongoID     primitive.ObjectID `bson:"_id,omitempty" json:"-"`  // internal Mongo ID, hidden from JSON
-	ID          string             `bson:"id" json:"id"`            // your custom ID
-	BookName    string             `bson:"book_name" json:"book_name"`
-	BookAuthor  string             `bson:"book_author" json:"book_author"`
-	BookEdition string             `bson:"book_edition" json:"book_edition"`
-	BookPages   string             `bson:"book_pages" json:"book_pages"`
-	BookYear    string             `bson:"book_year" json:"book_year"`
+	ID          string             `bson:"id" json:"ID"`            // your custom ID
+	BookName    string             `bson:"book_name" json:"BookName"`
+	BookAuthor  string             `bson:"book_author" json:"BookAuthor"`
+	BookEdition string             `bson:"book_edition" json:"BookEdition"`
+	BookPages   string             `bson:"book_pages" json:"BookPages"`
+	BookYear    string             `bson:"book_year" json:"BookYear"`
 }
 
 // Here we make sure the connection to the database is correct and initial
@@ -63,7 +63,7 @@ func prepareDatabase(client *mongo.Client, dbName string, collecName string) (*m
 // interface{} is a special type in Golang, basically a wildcard...
 func findAllBooks(coll *mongo.Collection) []map[string]interface{} {
 	cursor, err := coll.Find(context.TODO(), bson.D{{}})
-	var results []BookStore
+	var results []Book
 	if err = cursor.All(context.TODO(), &results); err != nil {
 		panic(err)
 	}
@@ -84,7 +84,7 @@ func findAllBooks(coll *mongo.Collection) []map[string]interface{} {
 
 func findAllAuthors(coll *mongo.Collection) []string {
 	cursor, err := coll.Find(context.TODO(), bson.D{{}})
-	var allBooks []BookStore
+	var allBooks []Book
 	if err = cursor.All(context.TODO(), &allBooks); err != nil {
 		panic(err)
 	}
@@ -99,7 +99,7 @@ func findAllAuthors(coll *mongo.Collection) []string {
 
 func findAllYears(coll *mongo.Collection) []string {
 	cursor, err := coll.Find(context.TODO(), bson.D{{}})
-	var allBooks []BookStore
+	var allBooks []Book
 	if err = cursor.All(context.TODO(), &allBooks); err != nil {
 		panic(err)
 	}
